@@ -1,0 +1,39 @@
+# Core Framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# API and HTTP
+requests==2.31.0
+python-dotenv==1.0.0
+
+# OpenAI and AI Services
+openai==1.6.1
+anthropic==0.8.1
+
+# Audio Processing
+pyaudio==0.2.14
+pydub==0.25.1
+sounddevice==0.4.6
+soundfile==0.12.1
+
+# Speech Recognition and TTS
+SpeechRecognition==3.10.1
+elevenlabs==0.2.27
+
+# Data Processing
+numpy==1.26.3
+pandas==2.1.4
+
+# Database (Optional - uncomment if needed)
+# pymongo==4.6.1
+# psycopg2-binary==2.9.9
+# sqlalchemy==2.0.25
+
+# Utilities
+python-multipart==0.0.6
+validators==0.22.0
+
+# Development
+pytest==7.4.3
+black==23.12.1
+flake8==7.0.0
