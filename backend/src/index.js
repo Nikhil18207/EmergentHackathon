@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import garmentsRoutes from './routes/garments.routes.js';
+import materialsRoutes from './routes/materials.routes.js';
+import featuresRoutes from './routes/features.routes.js';
 
 // Load environment variables
 dotenv.config();
@@ -29,6 +32,11 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// API Routes
+app.use('/api/garments', garmentsRoutes);
+app.use('/api/materials', materialsRoutes);
+app.use('/api/features', featuresRoutes);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -40,6 +48,10 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
+    console.log(`🚀 TrendPilot API Server running on port ${PORT}`);
     console.log(`📍 API endpoint: http://localhost:${PORT}`);
+    console.log(`📊 Available routes:`);
+    console.log(`   - GET  /api/garments`);
+    console.log(`   - GET  /api/materials`);
+    console.log(`   - GET  /api/features`);
 });

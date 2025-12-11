@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import Button from '../../components/ui/Button';
@@ -11,6 +11,8 @@ import MaterialPanel from './components/MaterialPanel';
 import FeaturePanel from './components/FeaturePanel';
 import SilhouettePanel from './components/SilhouettePanel';
 import PresetSelector from './components/PresetSelector';
+import GarmentSelector from './components/GarmentSelector';
+import api from '../../services/api';
 import {
     GarmentModel,
     ColorOption,
@@ -31,8 +33,45 @@ const ThreeDCustomizerFlow = () => {
     const [activeTab, setActiveTab] = useState<TabType>('colors');
     const [showPresets, setShowPresets] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [availableGarments, setAvailableGarments] = useState<GarmentModel[]>([]);
+    const [availableMaterials, setAvailableMaterials] = useState<MaterialOption[]>([]);
+    const [availableFeatures, setAvailableFeatures] = useState<FeatureOption[]>([]);
 
-    const initialModel: GarmentModel = {
+    // Fetch data from API
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                setIsLoading(true);
+                const [garmentsRes, materialsRes, featuresRes] = await Promise.all([
+                    api.garments.getAll(),
+                    api.materials.getAll(),
+                    api.features.getAll()
+                ]);
+
+                if (garmentsRes.success && garmentsRes.data) {
+                    setAvailableGarments(garmentsRes.data);
+                }
+                if (materialsRes.success && materialsRes.data) {
+                    setAvailableMaterials(materialsRes.data);
+                }
+                if (featuresRes.success && featuresRes.data) {
+                    setAvailableFeatures(featuresRes.data);
+                }
+
+                success('Data Loaded', `${garmentsRes.data?.length || 0} garments, ${materialsRes.data?.length || 0} materials, ${featuresRes.data?.length || 0} features loaded`);
+            } catch (err) {
+                error('Failed to Load Data', 'Could not connect to backend. Using default data.');
+                console.error('Error fetching data:', err);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchData();
+    }, [success, error]);
+
+    const initialModel: GarmentModel = availableGarments[0] || {
         id: 'basic-tee',
         name: 'Basic T-Shirt',
         category: 'Tops',
@@ -76,6 +115,16 @@ const ThreeDCustomizerFlow = () => {
         }));
         setCustomizationState(newState);
     }, []);
+
+    const handleGarmentSelect = useCallback((garment: GarmentModel) => {
+        const newState = {
+            ...customizationState,
+            selectedModel: garment
+        };
+        updateHistory(newState);
+        success('Garment Selected', `${garment.name} loaded`);
+    }, [customizationState, updateHistory, success]);
+
 
     const handleUndo = useCallback(() => {
         if (history.past.length === 0) return;
@@ -190,8 +239,18 @@ const ThreeDCustomizerFlow = () => {
             category: 'solid'
         };
 
+        // Find the garment model if garmentId is specified in the preset
+        let selectedGarment = customizationState.selectedModel;
+        if (preset.garmentId) {
+            const garment = availableGarments.find(g => g.id === preset.garmentId);
+            if (garment) {
+                selectedGarment = garment;
+            }
+        }
+
         const newState: CustomizationState = {
             ...customizationState,
+            selectedModel: selectedGarment,
             selectedColors: {
                 primary: primaryColor,
                 secondary: secondaryColor,
@@ -202,7 +261,7 @@ const ThreeDCustomizerFlow = () => {
         updateHistory(newState);
         setShowPresets(false);
         success('Preset Applied', `${preset.name} loaded successfully`);
-    }, [customizationState, updateHistory, success]);
+    }, [customizationState, updateHistory, success, availableGarments]);
 
     const calculateTotalCost = useCallback(() => {
         let total = customizationState.selectedModel?.basePrice || 0;
@@ -272,186 +331,213 @@ const ThreeDCustomizerFlow = () => {
             <ToastContainer messages={messages} onClose={closeToast} />
 
             <main className="pt-20 pb-8">
-                <div className="max-w-[1400px] mx-auto px-6">
-                    <div className="mb-6">
-                        <button
-                            onClick={() => navigate('/multi-input-selection')}
-                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground animate-spring-fast">
-
-                            <Icon name="ArrowLeft" size={20} />
-                            <span className="font-caption text-sm">Back to Input Selection</span>
-                        </button>
-                    </div>
-
-                    <div className="mb-8">
-                        <h1 className="font-heading font-bold text-4xl text-foreground mb-2">
-                            3D Garment Customizer
-                        </h1>
-                        <p className="font-caption text-lg text-muted-foreground">
-                            Design your garment in real-time with interactive 3D visualization
-                        </p>
-                    </div>
-
-                    {showPresets &&
-                        <div className="mb-8 glass-strong p-6 rounded-lg border border-border">
-                            <PresetSelector onPresetSelect={handlePresetSelect} />
-                            <div className="mt-4 text-center">
-                                <Button
-                                    variant="ghost"
-                                    onClick={() => setShowPresets(false)}
-                                    iconName="X"
-                                    iconPosition="left">
-
-                                    Start from Scratch
-                                </Button>
-                            </div>
+                {isLoading ? (
+                    <div className="max-w-[1400px] mx-auto px-6">
+                        <div className="flex flex-col items-center justify-center min-h-[600px] space-y-4">
+                            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary"></div>
+                            <h2 className="font-heading font-semibold text-xl text-foreground">Loading 3D Customizer...</h2>
+                            <p className="font-caption text-muted-foreground">Fetching garments, materials, and features</p>
                         </div>
-                    }
+                    </div>
+                ) : (
+                    <div className="max-w-[1400px] mx-auto px-6">
+                        <div className="mb-6">
+                            <button
+                                onClick={() => navigate('/multi-input-selection')}
+                                className="flex items-center gap-2 text-muted-foreground hover:text-foreground animate-spring-fast">
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div className="space-y-4">
-                            <div className="glass-strong p-4 rounded-lg border border-border">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h2 className="font-heading font-semibold text-xl text-foreground">
-                                        3D Preview
-                                    </h2>
-                                    <div className="flex items-center gap-2">
-                                        <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={handleUndo}
-                                            disabled={history.past.length === 0}
-                                            iconName="Undo"
-                                            aria-label="Undo" />
+                                <Icon name="ArrowLeft" size={20} />
+                                <span className="font-caption text-sm">Back to Input Selection</span>
+                            </button>
+                        </div>
 
-                                        <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={handleRedo}
-                                            disabled={history.future.length === 0}
-                                            iconName="Redo"
-                                            aria-label="Redo" />
+                        <div className="mb-8">
+                            <h1 className="font-heading font-bold text-4xl text-foreground mb-2">
+                                3D Garment Customizer
+                            </h1>
+                            <p className="font-caption text-lg text-muted-foreground">
+                                Design your garment in real-time with interactive 3D visualization
+                            </p>
+                        </div>
 
-                                    </div>
-                                </div>
-                                <ModelViewer
-                                    selectedModel={customizationState.selectedModel}
-                                    onRotate={() => { }}
-                                    onZoom={() => { }}
-                                    className="h-[500px]" />
-
+                        {availableGarments.length > 0 && (
+                            <div className="mb-8 glass-strong p-6 rounded-lg border border-border">
+                                <GarmentSelector
+                                    garments={availableGarments}
+                                    selectedGarment={customizationState.selectedModel}
+                                    onSelect={handleGarmentSelect}
+                                />
                             </div>
+                        )}
 
-                            <div className="glass-strong p-4 rounded-lg border border-border">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-heading font-semibold text-foreground">Cost Summary</h3>
-                                    <span className="font-data text-2xl text-accent font-bold">
-                                        ${calculateTotalCost()}
-                                    </span>
+                        {showPresets &&
+                            <div className="mb-8 glass-strong p-6 rounded-lg border border-border">
+                                <PresetSelector onPresetSelect={handlePresetSelect} />
+                                <div className="mt-4 text-center">
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => setShowPresets(false)}
+                                        iconName="X"
+                                        iconPosition="left">
+
+                                        Start from Scratch
+                                    </Button>
                                 </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between text-sm">
-                                        <span className="font-caption text-muted-foreground">Base Price</span>
-                                        <span className="font-data text-foreground">
-                                            ${customizationState.selectedModel?.basePrice.toFixed(2)}
+                            </div>
+                        }
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="space-y-4">
+                                <div className="glass-strong p-4 rounded-lg border border-border">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <h2 className="font-heading font-semibold text-xl text-foreground">
+                                            3D Preview
+                                        </h2>
+                                        <div className="flex items-center gap-2">
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                onClick={handleUndo}
+                                                disabled={history.past.length === 0}
+                                                iconName="Undo"
+                                                aria-label="Undo" />
+
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                onClick={handleRedo}
+                                                disabled={history.future.length === 0}
+                                                iconName="Redo"
+                                                aria-label="Redo" />
+
+                                        </div>
+                                    </div>
+                                    <ModelViewer
+                                        selectedModel={customizationState.selectedModel}
+                                        selectedColors={customizationState.selectedColors}
+                                        selectedMaterial={customizationState.selectedMaterial ? {
+                                            roughness: 0.8,
+                                            metalness: 0.0,
+                                            textureFile: customizationState.selectedMaterial.texture
+                                        } : null}
+                                        selectedFeatures={customizationState.selectedFeatures}
+                                        onRotate={() => { }}
+                                        onZoom={() => { }}
+                                        className="h-[1050px]" />
+
+                                </div>
+
+                                <div className="glass-strong p-4 rounded-lg border border-border">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <h3 className="font-heading font-semibold text-foreground">Cost Summary</h3>
+                                        <span className="font-data text-2xl text-accent font-bold">
+                                            ${calculateTotalCost()}
                                         </span>
                                     </div>
-                                    {customizationState.selectedMaterial &&
+                                    <div className="space-y-2">
                                         <div className="flex items-center justify-between text-sm">
-                                            <span className="font-caption text-muted-foreground">Material</span>
+                                            <span className="font-caption text-muted-foreground">Base Price</span>
                                             <span className="font-data text-foreground">
-                                                +${customizationState.selectedMaterial.price.toFixed(2)}
+                                                ${customizationState.selectedModel?.basePrice.toFixed(2)}
                                             </span>
                                         </div>
-                                    }
-                                    {customizationState.selectedFeatures.length > 0 &&
-                                        <div className="flex items-center justify-between text-sm">
-                                            <span className="font-caption text-muted-foreground">Features</span>
-                                            <span className="font-data text-foreground">
-                                                +${customizationState.selectedFeatures.reduce((sum, f) => sum + f.price, 0).toFixed(2)}
-                                            </span>
-                                        </div>
-                                    }
+                                        {customizationState.selectedMaterial &&
+                                            <div className="flex items-center justify-between text-sm">
+                                                <span className="font-caption text-muted-foreground">Material</span>
+                                                <span className="font-data text-foreground">
+                                                    +${customizationState.selectedMaterial.price.toFixed(2)}
+                                                </span>
+                                            </div>
+                                        }
+                                        {customizationState.selectedFeatures.length > 0 &&
+                                            <div className="flex items-center justify-between text-sm">
+                                                <span className="font-caption text-muted-foreground">Features</span>
+                                                <span className="font-data text-foreground">
+                                                    +${customizationState.selectedFeatures.reduce((sum, f) => sum + f.price, 0).toFixed(2)}
+                                                </span>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="space-y-4">
-                            <div className="glass-strong rounded-lg border border-border overflow-hidden">
-                                <div className="flex border-b border-border">
-                                    {tabs.map((tab) =>
-                                        <button
-                                            key={tab.id}
-                                            onClick={() => setActiveTab(tab.id)}
-                                            className={`
+                            <div className="space-y-4">
+                                <div className="glass-strong rounded-lg border border-border overflow-hidden">
+                                    <div className="flex border-b border-border">
+                                        {tabs.map((tab) =>
+                                            <button
+                                                key={tab.id}
+                                                onClick={() => setActiveTab(tab.id)}
+                                                className={`
                         flex-1 flex items-center justify-center gap-2 px-4 py-3
                         font-caption text-sm animate-spring-fast
                         ${activeTab === tab.id ?
-                                                    'bg-primary text-primary-foreground' :
-                                                    'text-muted-foreground hover:text-foreground hover:bg-muted/50'}
+                                                        'bg-primary text-primary-foreground' :
+                                                        'text-muted-foreground hover:text-foreground hover:bg-muted/50'}
                       `
-                                            }>
+                                                }>
 
-                                            <Icon name={tab.icon} size={18} />
-                                            <span className="hidden sm:inline">{tab.label}</span>
-                                        </button>
-                                    )}
+                                                <Icon name={tab.icon} size={18} />
+                                                <span className="hidden sm:inline">{tab.label}</span>
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    <div className="p-6 max-h-[600px] overflow-y-auto">
+                                        {activeTab === 'colors' &&
+                                            <ColorPanel
+                                                selectedColors={customizationState.selectedColors}
+                                                onColorSelect={handleColorSelect} />
+
+                                        }
+                                        {activeTab === 'materials' &&
+                                            <MaterialPanel
+                                                selectedMaterial={customizationState.selectedMaterial}
+                                                onMaterialSelect={handleMaterialSelect} />
+
+                                        }
+                                        {activeTab === 'features' &&
+                                            <FeaturePanel
+                                                selectedFeatures={customizationState.selectedFeatures}
+                                                onFeatureToggle={handleFeatureToggle} />
+
+                                        }
+                                        {activeTab === 'silhouette' &&
+                                            <SilhouettePanel
+                                                silhouetteControls={customizationState.silhouetteControls}
+                                                onControlChange={handleSilhouetteChange}
+                                                onReset={handleSilhouetteReset} />
+
+                                        }
+                                    </div>
                                 </div>
 
-                                <div className="p-6 max-h-[600px] overflow-y-auto">
-                                    {activeTab === 'colors' &&
-                                        <ColorPanel
-                                            selectedColors={customizationState.selectedColors}
-                                            onColorSelect={handleColorSelect} />
+                                <div className="flex gap-3">
+                                    <Button
+                                        variant="outline"
+                                        fullWidth
+                                        onClick={handleSave}
+                                        loading={isSaving}
+                                        iconName="Save"
+                                        iconPosition="left">
 
-                                    }
-                                    {activeTab === 'materials' &&
-                                        <MaterialPanel
-                                            selectedMaterial={customizationState.selectedMaterial}
-                                            onMaterialSelect={handleMaterialSelect} />
+                                        Save Progress
+                                    </Button>
+                                    <Button
+                                        variant="default"
+                                        fullWidth
+                                        onClick={handleProceed}
+                                        iconName="ArrowRight"
+                                        iconPosition="right"
+                                        className="bg-gradient-to-r from-primary to-secondary">
 
-                                    }
-                                    {activeTab === 'features' &&
-                                        <FeaturePanel
-                                            selectedFeatures={customizationState.selectedFeatures}
-                                            onFeatureToggle={handleFeatureToggle} />
-
-                                    }
-                                    {activeTab === 'silhouette' &&
-                                        <SilhouettePanel
-                                            silhouetteControls={customizationState.silhouetteControls}
-                                            onControlChange={handleSilhouetteChange}
-                                            onReset={handleSilhouetteReset} />
-
-                                    }
+                                        Proceed to Studio
+                                    </Button>
                                 </div>
-                            </div>
-
-                            <div className="flex gap-3">
-                                <Button
-                                    variant="outline"
-                                    fullWidth
-                                    onClick={handleSave}
-                                    loading={isSaving}
-                                    iconName="Save"
-                                    iconPosition="left">
-
-                                    Save Progress
-                                </Button>
-                                <Button
-                                    variant="default"
-                                    fullWidth
-                                    onClick={handleProceed}
-                                    iconName="ArrowRight"
-                                    iconPosition="right"
-                                    className="bg-gradient-to-r from-primary to-secondary">
-
-                                    Proceed to Studio
-                                </Button>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
             </main>
         </div>);
 

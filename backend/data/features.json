@@ -1,0 +1,402 @@
+[
+    {
+        "id": "reflective-piping",
+        "name": "Reflective Piping",
+        "category": "trim",
+        "description": "3M reflective tape along seams for visibility",
+        "placement": [
+            "sleeves",
+            "hem",
+            "collar",
+            "side-seams"
+        ],
+        "pricePerUnit": 3.00,
+        "manufacturingTime": "2 days",
+        "meshFile": "/models/features/reflective-piping.glb",
+        "emissiveColor": "#ffffff",
+        "emissiveIntensity": 0.5,
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "bomber-jacket",
+            "crop-top",
+            "windbreaker",
+            "tank-top"
+        ]
+    },
+    {
+        "id": "embroidery-chest",
+        "name": "Chest Embroidery",
+        "category": "decoration",
+        "description": "Custom embroidered logo or text on chest (up to 3 inches)",
+        "placement": [
+            "left-chest",
+            "center-chest",
+            "right-chest"
+        ],
+        "pricePerUnit": 4.50,
+        "manufacturingTime": "3 days",
+        "textureFile": "/textures/embroidery-pattern.png",
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "bomber-jacket",
+            "crop-top",
+            "polo-shirt",
+            "tank-top"
+        ]
+    },
+    {
+        "id": "embroidery-back",
+        "name": "Back Embroidery",
+        "category": "decoration",
+        "description": "Large embroidered design on back (up to 10 inches)",
+        "placement": [
+            "upper-back",
+            "center-back"
+        ],
+        "pricePerUnit": 8.00,
+        "manufacturingTime": "4 days",
+        "textureFile": "/textures/embroidery-large.png",
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "bomber-jacket",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "kangaroo-pocket",
+        "name": "Kangaroo Pocket",
+        "category": "functional",
+        "description": "Front pouch pocket for hoodies",
+        "placement": [
+            "front-center"
+        ],
+        "pricePerUnit": 2.00,
+        "manufacturingTime": "1 day",
+        "meshFile": "/models/features/kangaroo-pocket.glb",
+        "supportedGarments": [
+            "oversized-hoodie"
+        ]
+    },
+    {
+        "id": "drawstrings",
+        "name": "Drawstrings",
+        "category": "functional",
+        "description": "Adjustable drawstrings for hood or waist",
+        "placement": [
+            "hood",
+            "waist"
+        ],
+        "pricePerUnit": 0.50,
+        "manufacturingTime": "0.5 days",
+        "meshFile": "/models/features/drawstrings.glb",
+        "supportedGarments": [
+            "oversized-hoodie",
+            "cargo-pants",
+            "joggers",
+            "shorts"
+        ]
+    },
+    {
+        "id": "distressed",
+        "name": "Distressed Finish",
+        "category": "treatment",
+        "description": "Worn, vintage look with strategic fading",
+        "placement": [
+            "knees",
+            "thighs",
+            "pockets"
+        ],
+        "pricePerUnit": 3.50,
+        "manufacturingTime": "2 days",
+        "textureFile": "/textures/distressed.png",
+        "supportedGarments": [
+            "skinny-jeans",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "rips",
+        "name": "Ripped Details",
+        "category": "treatment",
+        "description": "Strategic rips and tears for edgy look",
+        "placement": [
+            "knees",
+            "thighs"
+        ],
+        "pricePerUnit": 2.50,
+        "manufacturingTime": "1.5 days",
+        "meshFile": "/models/features/rips.glb",
+        "supportedGarments": [
+            "skinny-jeans"
+        ]
+    },
+    {
+        "id": "patches",
+        "name": "Iron-On Patches",
+        "category": "decoration",
+        "description": "Custom patches (up to 3 patches)",
+        "placement": [
+            "chest",
+            "sleeves",
+            "back",
+            "legs"
+        ],
+        "pricePerUnit": 5.00,
+        "manufacturingTime": "2 days",
+        "textureFile": "/textures/patches.png",
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "bomber-jacket",
+            "skinny-jeans",
+            "cargo-pants",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "print-front",
+        "name": "Front Print",
+        "category": "decoration",
+        "description": "Screen-printed design on front (up to 12x12 inches)",
+        "placement": [
+            "center-chest",
+            "full-front"
+        ],
+        "pricePerUnit": 3.50,
+        "manufacturingTime": "2 days",
+        "textureFile": "/textures/print-design.png",
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "crop-top",
+            "tank-top",
+            "shorts"
+        ]
+    },
+    {
+        "id": "print-back",
+        "name": "Back Print",
+        "category": "decoration",
+        "description": "Large screen-printed design on back",
+        "placement": [
+            "full-back"
+        ],
+        "pricePerUnit": 4.00,
+        "manufacturingTime": "2 days",
+        "textureFile": "/textures/print-back.png",
+        "supportedGarments": [
+            "basic-tee",
+            "oversized-hoodie",
+            "tank-top"
+        ]
+    },
+    {
+        "id": "ribbed-cuffs",
+        "name": "Ribbed Cuffs",
+        "category": "trim",
+        "description": "Elastic ribbed cuffs on sleeves and hem",
+        "placement": [
+            "sleeves",
+            "hem"
+        ],
+        "pricePerUnit": 1.50,
+        "manufacturingTime": "1 day",
+        "meshFile": "/models/features/ribbed-cuffs.glb",
+        "supportedGarments": [
+            "bomber-jacket",
+            "oversized-hoodie",
+            "joggers"
+        ]
+    },
+    {
+        "id": "tie-front",
+        "name": "Tie-Front Detail",
+        "category": "functional",
+        "description": "Adjustable tie at front hem",
+        "placement": [
+            "front-hem"
+        ],
+        "pricePerUnit": 1.00,
+        "manufacturingTime": "1 day",
+        "meshFile": "/models/features/tie-front.glb",
+        "supportedGarments": [
+            "crop-top"
+        ]
+    },
+    {
+        "id": "zipper-front",
+        "name": "Front Zipper",
+        "category": "functional",
+        "description": "Full-length front zipper",
+        "placement": [
+            "front-center"
+        ],
+        "pricePerUnit": 3.00,
+        "manufacturingTime": "2 days",
+        "meshFile": "/models/features/zipper.glb",
+        "supportedGarments": [
+            "bomber-jacket",
+            "oversized-hoodie",
+            "windbreaker",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "side-pockets",
+        "name": "Side Pockets",
+        "category": "functional",
+        "description": "Functional side pockets",
+        "placement": [
+            "sides"
+        ],
+        "pricePerUnit": 2.00,
+        "manufacturingTime": "1.5 days",
+        "meshFile": "/models/features/side-pockets.glb",
+        "supportedGarments": [
+            "bomber-jacket",
+            "skinny-jeans",
+            "windbreaker",
+            "joggers",
+            "shorts",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "cargo-pockets",
+        "name": "Cargo Pockets",
+        "category": "functional",
+        "description": "Large utility pockets on thighs",
+        "placement": [
+            "thighs"
+        ],
+        "pricePerUnit": 3.50,
+        "manufacturingTime": "2 days",
+        "meshFile": "/models/features/cargo-pockets.glb",
+        "supportedGarments": [
+            "cargo-pants"
+        ]
+    },
+    {
+        "id": "hood",
+        "name": "Hood",
+        "category": "functional",
+        "description": "Attached hood with drawstrings",
+        "placement": [
+            "neck"
+        ],
+        "pricePerUnit": 4.00,
+        "manufacturingTime": "2 days",
+        "meshFile": "/models/features/hood.glb",
+        "supportedGarments": [
+            "oversized-hoodie"
+        ]
+    },
+    {
+        "id": "contrast-stitching",
+        "name": "Contrast Stitching",
+        "category": "trim",
+        "description": "Decorative contrast color stitching",
+        "placement": [
+            "seams",
+            "hem",
+            "pockets"
+        ],
+        "pricePerUnit": 1.50,
+        "manufacturingTime": "1 day",
+        "textureFile": "/textures/contrast-stitch.png",
+        "supportedGarments": [
+            "basic-tee",
+            "skinny-jeans",
+            "cargo-pants",
+            "denim-jacket",
+            "polo-shirt"
+        ]
+    },
+    {
+        "id": "elastic-waistband",
+        "name": "Elastic Waistband",
+        "category": "functional",
+        "description": "Comfortable elastic waistband",
+        "placement": [
+            "waist"
+        ],
+        "pricePerUnit": 1.00,
+        "manufacturingTime": "1 day",
+        "meshFile": "/models/features/elastic-waist.glb",
+        "supportedGarments": [
+            "joggers",
+            "shorts",
+            "cargo-pants"
+        ]
+    },
+    {
+        "id": "thumbholes",
+        "name": "Thumbholes",
+        "category": "functional",
+        "description": "Thumbholes in sleeve cuffs",
+        "placement": [
+            "sleeve-cuffs"
+        ],
+        "pricePerUnit": 0.75,
+        "manufacturingTime": "0.5 days",
+        "meshFile": "/models/features/thumbholes.glb",
+        "supportedGarments": [
+            "oversized-hoodie",
+            "crop-top"
+        ]
+    },
+    {
+        "id": "mesh-panels",
+        "name": "Mesh Panels",
+        "category": "functional",
+        "description": "Breathable mesh panel inserts",
+        "placement": [
+            "sides",
+            "back",
+            "underarms"
+        ],
+        "pricePerUnit": 2.50,
+        "manufacturingTime": "2 days",
+        "meshFile": "/models/features/mesh-panels.glb",
+        "supportedGarments": [
+            "tank-top",
+            "shorts",
+            "windbreaker"
+        ]
+    },
+    {
+        "id": "button-closure",
+        "name": "Button Closure",
+        "category": "functional",
+        "description": "Classic button-up closure",
+        "placement": [
+            "front-center"
+        ],
+        "pricePerUnit": 2.00,
+        "manufacturingTime": "1.5 days",
+        "meshFile": "/models/features/buttons.glb",
+        "supportedGarments": [
+            "polo-shirt",
+            "denim-jacket"
+        ]
+    },
+    {
+        "id": "collar",
+        "name": "Collar",
+        "category": "functional",
+        "description": "Classic collar design",
+        "placement": [
+            "neck"
+        ],
+        "pricePerUnit": 1.50,
+        "manufacturingTime": "1 day",
+        "meshFile": "/models/features/collar.glb",
+        "supportedGarments": [
+            "polo-shirt",
+            "denim-jacket"
+        ]
+    }
+]

@@ -63,6 +63,7 @@ export interface PresetCombination {
     description: string;
     thumbnail: string;
     alt: string;
+    garmentId?: string; // Optional: ID of the garment model to use (e.g., 'oversized-hoodie')
     colors: {
         primary: string;
         secondary: string;

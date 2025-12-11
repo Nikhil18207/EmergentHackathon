@@ -1,0 +1,576 @@
+[
+    {
+        "id": "basic-tee",
+        "name": "Basic T-Shirt",
+        "category": "tops",
+        "subcategory": "tshirts",
+        "modelFile": "/models/shirt_baked.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_183de6656-1764667408601.png",
+        "basePrice": 8.50,
+        "manufacturingComplexity": "low",
+        "availableSizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "cotton-jersey",
+        "supportedFeatures": [
+            "embroidery",
+            "print",
+            "reflective-piping"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 50,
+                "unit": "%"
+            },
+            "length": {
+                "min": 60,
+                "max": 90,
+                "default": 75,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 40,
+                "max": 60,
+                "default": 50,
+                "unit": "cm"
+            },
+            "waist": {
+                "min": 70,
+                "max": 110,
+                "default": 90,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 15,
+                "max": 30,
+                "default": 22,
+                "unit": "cm"
+            },
+            "hem": {
+                "min": 40,
+                "max": 60,
+                "default": 50,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "oversized-hoodie",
+        "name": "Oversized Hoodie",
+        "category": "tops",
+        "subcategory": "hoodies",
+        "modelFile": "/models/hoodie_and_jeans.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_hoodie.png",
+        "basePrice": 15.00,
+        "manufacturingComplexity": "medium",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "cotton-fleece",
+        "supportedFeatures": [
+            "embroidery",
+            "print",
+            "kangaroo-pocket",
+            "drawstrings"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 75,
+                "unit": "%"
+            },
+            "length": {
+                "min": 65,
+                "max": 85,
+                "default": 75,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 45,
+                "max": 65,
+                "default": 55,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 60,
+                "max": 75,
+                "default": 68,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "skinny-jeans",
+        "name": "Skinny Jeans",
+        "category": "bottoms",
+        "subcategory": "jeans",
+        "modelFile": "/models/jeans.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_jeans.png",
+        "basePrice": 18.00,
+        "manufacturingComplexity": "high",
+        "availableSizes": [
+            "26",
+            "28",
+            "30",
+            "32",
+            "34",
+            "36"
+        ],
+        "defaultMaterial": "denim-stretch",
+        "supportedFeatures": [
+            "distressed",
+            "rips",
+            "patches",
+            "embroidery"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 20,
+                "unit": "%"
+            },
+            "length": {
+                "min": 95,
+                "max": 110,
+                "default": 102,
+                "unit": "cm"
+            },
+            "waist": {
+                "min": 70,
+                "max": 95,
+                "default": 80,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "crop-top",
+        "name": "Crop Top",
+        "category": "tops",
+        "subcategory": "tshirts",
+        "modelFile": "/models/crop-top.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_crop.png",
+        "basePrice": 7.00,
+        "manufacturingComplexity": "low",
+        "availableSizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "defaultMaterial": "cotton-jersey",
+        "supportedFeatures": [
+            "embroidery",
+            "print",
+            "tie-front"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 40,
+                "unit": "%"
+            },
+            "length": {
+                "min": 35,
+                "max": 50,
+                "default": 42,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 35,
+                "max": 50,
+                "default": 42,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 10,
+                "max": 20,
+                "default": 15,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "bomber-jacket",
+        "name": "Bomber Jacket",
+        "category": "outerwear",
+        "subcategory": "jackets",
+        "modelFile": "/models/bomber.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_bomber.png",
+        "basePrice": 35.00,
+        "manufacturingComplexity": "high",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "polyester-nylon",
+        "supportedFeatures": [
+            "embroidery",
+            "patches",
+            "reflective-piping",
+            "ribbed-cuffs"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 60,
+                "unit": "%"
+            },
+            "length": {
+                "min": 60,
+                "max": 75,
+                "default": 68,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 45,
+                "max": 60,
+                "default": 52,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 60,
+                "max": 70,
+                "default": 65,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "tank-top",
+        "name": "Tank Top",
+        "category": "tops",
+        "subcategory": "tshirts",
+        "modelFile": "/models/tank.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_tank.png",
+        "basePrice": 6.50,
+        "manufacturingComplexity": "low",
+        "availableSizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "defaultMaterial": "cotton-jersey",
+        "supportedFeatures": [
+            "print",
+            "embroidery"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 45,
+                "unit": "%"
+            },
+            "length": {
+                "min": 60,
+                "max": 75,
+                "default": 68,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 30,
+                "max": 45,
+                "default": 38,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "cargo-pants",
+        "name": "Cargo Pants",
+        "category": "bottoms",
+        "subcategory": "pants",
+        "modelFile": "/models/cargo.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_cargo.png",
+        "basePrice": 22.00,
+        "manufacturingComplexity": "high",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "cotton-twill",
+        "supportedFeatures": [
+            "cargo-pockets",
+            "patches",
+            "drawstrings"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 55,
+                "unit": "%"
+            },
+            "length": {
+                "min": 95,
+                "max": 110,
+                "default": 102,
+                "unit": "cm"
+            },
+            "waist": {
+                "min": 75,
+                "max": 100,
+                "default": 85,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "windbreaker",
+        "name": "Windbreaker Jacket",
+        "category": "outerwear",
+        "subcategory": "jackets",
+        "modelFile": "/models/windbreaker.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_windbreaker.png",
+        "basePrice": 28.00,
+        "manufacturingComplexity": "medium",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "polyester-nylon",
+        "supportedFeatures": [
+            "reflective-piping",
+            "zipper-front",
+            "side-pockets"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 65,
+                "unit": "%"
+            },
+            "length": {
+                "min": 65,
+                "max": 80,
+                "default": 72,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 45,
+                "max": 60,
+                "default": 52,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 60,
+                "max": 70,
+                "default": 65,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "joggers",
+        "name": "Joggers",
+        "category": "bottoms",
+        "subcategory": "pants",
+        "modelFile": "/models/joggers.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_joggers.png",
+        "basePrice": 16.00,
+        "manufacturingComplexity": "medium",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "french-terry",
+        "supportedFeatures": [
+            "side-pockets",
+            "drawstrings",
+            "ribbed-cuffs"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 60,
+                "unit": "%"
+            },
+            "length": {
+                "min": 95,
+                "max": 105,
+                "default": 100,
+                "unit": "cm"
+            },
+            "waist": {
+                "min": 70,
+                "max": 95,
+                "default": 80,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "polo-shirt",
+        "name": "Polo Shirt",
+        "category": "tops",
+        "subcategory": "tshirts",
+        "modelFile": "/models/polo.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_polo.png",
+        "basePrice": 12.00,
+        "manufacturingComplexity": "medium",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "cotton-pique",
+        "supportedFeatures": [
+            "embroidery",
+            "print"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 50,
+                "unit": "%"
+            },
+            "length": {
+                "min": 65,
+                "max": 80,
+                "default": 72,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 42,
+                "max": 58,
+                "default": 50,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 18,
+                "max": 25,
+                "default": 22,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "denim-jacket",
+        "name": "Denim Jacket",
+        "category": "outerwear",
+        "subcategory": "jackets",
+        "modelFile": "/models/denim-jacket.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_denim_jacket.png",
+        "basePrice": 32.00,
+        "manufacturingComplexity": "high",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "denim-stretch",
+        "supportedFeatures": [
+            "distressed",
+            "patches",
+            "embroidery",
+            "side-pockets"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 55,
+                "unit": "%"
+            },
+            "length": {
+                "min": 60,
+                "max": 75,
+                "default": 68,
+                "unit": "cm"
+            },
+            "shoulder": {
+                "min": 45,
+                "max": 60,
+                "default": 52,
+                "unit": "cm"
+            },
+            "sleeve": {
+                "min": 60,
+                "max": 70,
+                "default": 65,
+                "unit": "cm"
+            }
+        }
+    },
+    {
+        "id": "shorts",
+        "name": "Athletic Shorts",
+        "category": "bottoms",
+        "subcategory": "shorts",
+        "modelFile": "/models/shorts.glb",
+        "thumbnail": "https://img.rocket.new/generatedImages/rocket_gen_img_shorts.png",
+        "basePrice": 10.00,
+        "manufacturingComplexity": "low",
+        "availableSizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
+        "defaultMaterial": "mesh",
+        "supportedFeatures": [
+            "side-pockets",
+            "drawstrings",
+            "print"
+        ],
+        "silhouetteControls": {
+            "fit": {
+                "min": 0,
+                "max": 100,
+                "default": 50,
+                "unit": "%"
+            },
+            "length": {
+                "min": 40,
+                "max": 55,
+                "default": 48,
+                "unit": "cm"
+            },
+            "waist": {
+                "min": 70,
+                "max": 95,
+                "default": 80,
+                "unit": "cm"
+            }
+        }
+    }
+]

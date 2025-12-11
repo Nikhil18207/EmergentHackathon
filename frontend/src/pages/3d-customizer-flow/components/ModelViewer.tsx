@@ -1,45 +1,61 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useSnapshot } from 'valtio';
 import Icon from '../../../components/ui/AppIcon';
 import Button from '../../../components/ui/Button';
-import { GarmentModel } from '../types';
+import CanvasModel from '../../../components/3d/CanvasModel';
+import state from '../../../store';
 
 interface ModelViewerProps {
-    selectedModel: GarmentModel | null;
+    selectedModel?: {
+        id: string;
+        name: string;
+        category: string;
+        basePrice: number;
+        thumbnail: string;
+        alt: string;
+        modelFile?: string;
+    } | null;
+    selectedColors?: {
+        primary: { hex: string } | null;
+        secondary: { hex: string } | null;
+        accent: { hex: string } | null;
+    };
+    selectedMaterial?: {
+        roughness: number;
+        metalness: number;
+        textureFile?: string;
+    } | null;
+    selectedFeatures?: any[];
     onRotate: (angle: number) => void;
     onZoom: (level: number) => void;
     className?: string;
 }
 
-const ModelViewer = ({ selectedModel, onRotate, onZoom, className = '' }: ModelViewerProps) => {
-    const [rotation, setRotation] = useState(0);
+const ModelViewer = ({
+    selectedModel,
+    selectedColors,
+    onRotate,
+    onZoom,
+    className = ''
+}: ModelViewerProps) => {
+    const snap = useSnapshot(state);
     const [zoom, setZoom] = useState(1);
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-    const viewerRef = useRef<HTMLDivElement>(null);
+    const [lighting, setLighting] = useState<'studio' | 'outdoor' | 'neon'>('studio');
 
+    // Update global state when garment model changes
     useEffect(() => {
-        onRotate(rotation);
-    }, [rotation, onRotate]);
+        if (selectedModel?.modelFile) {
+            console.log('🔄 Loading model:', selectedModel.modelFile);
+            state.modelPath = selectedModel.modelFile;
+        }
+    }, [selectedModel]);
 
+    // Update global state when colors change
     useEffect(() => {
-        onZoom(zoom);
-    }, [zoom, onZoom]);
-
-    const handleMouseDown = (e: React.MouseEvent) => {
-        setIsDragging(true);
-        setDragStart({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging) return;
-        const deltaX = e.clientX - dragStart.x;
-        setRotation(prev => prev + deltaX * 0.5);
-        setDragStart({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
+        if (selectedColors?.primary?.hex) {
+            state.color = selectedColors.primary.hex;
+        }
+    }, [selectedColors]);
 
     const handleZoomIn = () => {
         setZoom(prev => Math.min(prev + 0.2, 3));
@@ -50,52 +66,18 @@ const ModelViewer = ({ selectedModel, onRotate, onZoom, className = '' }: ModelV
     };
 
     const handleReset = () => {
-        setRotation(0);
         setZoom(1);
     };
 
+    useEffect(() => {
+        onZoom(zoom);
+    }, [zoom, onZoom]);
+
     return (
         <div className={`relative h-full bg-muted/20 rounded-lg overflow-hidden ${className}`}>
-            <div
-                ref={viewerRef}
-                className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-            >
-                {selectedModel ? (
-                    <div
-                        className="relative animate-spring"
-                        style={{
-                            transform: `rotateY(${rotation}deg) scale(${zoom})`,
-                            transformStyle: 'preserve-3d'
-                        }}
-                    >
-                        <div className="w-80 h-96 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center">
-                            <div className="text-center space-y-4">
-                                <Icon name="Shirt" size={120} className="text-primary mx-auto" />
-                                <div className="space-y-2">
-                                    <h3 className="font-heading font-semibold text-xl text-foreground">
-                                        {selectedModel.name}
-                                    </h3>
-                                    <p className="font-caption text-sm text-muted-foreground">
-                                        3D Model Preview
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="text-center space-y-4">
-                        <Icon name="Box" size={80} className="text-muted-foreground mx-auto opacity-50" />
-                        <p className="font-caption text-muted-foreground">
-                            Select a garment to begin customization
-                        </p>
-                    </div>
-                )}
-            </div>
+            <CanvasModel enableOrbitControls={true} />
 
+            {/* Controls overlay */}
             <div className="absolute top-4 right-4 flex flex-col gap-2">
                 <Button
                     variant="secondary"
@@ -123,11 +105,12 @@ const ModelViewer = ({ selectedModel, onRotate, onZoom, className = '' }: ModelV
                 />
             </div>
 
+            {/* Instructions */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 glass-strong px-4 py-2 rounded-lg">
                 <div className="flex items-center gap-3">
                     <Icon name="MousePointer2" size={16} className="text-muted-foreground" />
                     <span className="font-caption text-sm text-foreground">
-                        Drag to rotate • Scroll to zoom
+                        Move mouse to rotate • Scroll to zoom
                     </span>
                 </div>
             </div>

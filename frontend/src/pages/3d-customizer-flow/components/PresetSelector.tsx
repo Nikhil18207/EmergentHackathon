@@ -15,6 +15,7 @@ const PresetSelector = ({ onPresetSelect, className = '' }: PresetSelectorProps)
             description: 'Bold colors with urban edge',
             thumbnail: "https://img.rocket.new/generatedImages/rocket_gen_img_106d2a040-1765093902575.png",
             alt: 'Black oversized hoodie with purple accents and street style details',
+            garmentId: 'oversized-hoodie', // Load the hoodie 3D model
             colors: { primary: '#000000', secondary: '#8B5CF6', accent: '#F59E0B' },
             material: 'cotton',
             features: ['pockets', 'hood', 'embroidery']

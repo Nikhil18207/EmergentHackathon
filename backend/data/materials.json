@@ -1,0 +1,319 @@
+[
+    {
+        "id": "cotton-jersey",
+        "name": "100% Cotton Jersey",
+        "type": "cotton",
+        "weight": 180,
+        "weightUnit": "GSM",
+        "stretch": "5%",
+        "durability": "high",
+        "textureFile": "/textures/cotton-jersey.jpg",
+        "normalMapFile": "/textures/cotton-jersey-normal.jpg",
+        "roughness": 0.8,
+        "metalness": 0.0,
+        "pricePerUnit": 2.50,
+        "sustainabilityScore": 8,
+        "careInstructions": "Machine wash cold, tumble dry low",
+        "suitableFor": [
+            "tshirts",
+            "crop-tops",
+            "dresses",
+            "activewear",
+            "tank-tops"
+        ]
+    },
+    {
+        "id": "cotton-fleece",
+        "name": "Cotton Fleece",
+        "type": "cotton",
+        "weight": 280,
+        "weightUnit": "GSM",
+        "stretch": "10%",
+        "durability": "very high",
+        "textureFile": "/textures/fleece.jpg",
+        "normalMapFile": "/textures/fleece-normal.jpg",
+        "roughness": 0.9,
+        "metalness": 0.0,
+        "pricePerUnit": 4.00,
+        "sustainabilityScore": 7,
+        "careInstructions": "Machine wash cold, tumble dry low",
+        "suitableFor": [
+            "hoodies",
+            "sweatshirts",
+            "joggers"
+        ]
+    },
+    {
+        "id": "denim-stretch",
+        "name": "Stretch Denim",
+        "type": "denim",
+        "weight": 320,
+        "weightUnit": "GSM",
+        "stretch": "15%",
+        "durability": "very high",
+        "textureFile": "/textures/denim.jpg",
+        "normalMapFile": "/textures/denim-normal.jpg",
+        "roughness": 0.9,
+        "metalness": 0.0,
+        "pricePerUnit": 4.50,
+        "sustainabilityScore": 6,
+        "careInstructions": "Machine wash cold, hang dry",
+        "suitableFor": [
+            "jeans",
+            "jackets",
+            "skirts",
+            "shorts"
+        ]
+    },
+    {
+        "id": "polyester-nylon",
+        "name": "Polyester-Nylon Blend",
+        "type": "synthetic",
+        "weight": 200,
+        "weightUnit": "GSM",
+        "stretch": "8%",
+        "durability": "high",
+        "textureFile": "/textures/polyester.jpg",
+        "normalMapFile": "/textures/polyester-normal.jpg",
+        "roughness": 0.4,
+        "metalness": 0.2,
+        "pricePerUnit": 3.50,
+        "sustainabilityScore": 4,
+        "careInstructions": "Machine wash cold, hang dry",
+        "suitableFor": [
+            "jackets",
+            "windbreakers",
+            "activewear"
+        ]
+    },
+    {
+        "id": "polyester-reflective",
+        "name": "Reflective Polyester",
+        "type": "synthetic",
+        "weight": 150,
+        "weightUnit": "GSM",
+        "stretch": "10%",
+        "durability": "medium",
+        "textureFile": "/textures/reflective.jpg",
+        "roughness": 0.3,
+        "metalness": 0.7,
+        "pricePerUnit": 5.00,
+        "sustainabilityScore": 4,
+        "careInstructions": "Hand wash cold, air dry",
+        "suitableFor": [
+            "activewear",
+            "outerwear",
+            "accessories"
+        ]
+    },
+    {
+        "id": "french-terry",
+        "name": "French Terry",
+        "type": "cotton",
+        "weight": 240,
+        "weightUnit": "GSM",
+        "stretch": "12%",
+        "durability": "high",
+        "textureFile": "/textures/french-terry.jpg",
+        "normalMapFile": "/textures/french-terry-normal.jpg",
+        "roughness": 0.85,
+        "metalness": 0.0,
+        "pricePerUnit": 3.50,
+        "sustainabilityScore": 7,
+        "careInstructions": "Machine wash cold, tumble dry low",
+        "suitableFor": [
+            "hoodies",
+            "sweatshirts",
+            "joggers",
+            "shorts"
+        ]
+    },
+    {
+        "id": "ribbed-knit",
+        "name": "Ribbed Knit",
+        "type": "cotton",
+        "weight": 220,
+        "weightUnit": "GSM",
+        "stretch": "20%",
+        "durability": "medium",
+        "textureFile": "/textures/ribbed-knit.jpg",
+        "normalMapFile": "/textures/ribbed-knit-normal.jpg",
+        "roughness": 0.75,
+        "metalness": 0.0,
+        "pricePerUnit": 3.00,
+        "sustainabilityScore": 7,
+        "careInstructions": "Machine wash cold, lay flat to dry",
+        "suitableFor": [
+            "crop-tops",
+            "dresses",
+            "bodysuits",
+            "tank-tops"
+        ]
+    },
+    {
+        "id": "mesh",
+        "name": "Athletic Mesh",
+        "type": "synthetic",
+        "weight": 120,
+        "weightUnit": "GSM",
+        "stretch": "15%",
+        "durability": "medium",
+        "textureFile": "/textures/mesh.jpg",
+        "roughness": 0.6,
+        "metalness": 0.1,
+        "pricePerUnit": 2.00,
+        "sustainabilityScore": 5,
+        "careInstructions": "Machine wash cold, air dry",
+        "suitableFor": [
+            "activewear",
+            "tshirts",
+            "tank-tops",
+            "shorts"
+        ]
+    },
+    {
+        "id": "cotton-twill",
+        "name": "Cotton Twill",
+        "type": "cotton",
+        "weight": 260,
+        "weightUnit": "GSM",
+        "stretch": "5%",
+        "durability": "very high",
+        "textureFile": "/textures/twill.jpg",
+        "normalMapFile": "/textures/twill-normal.jpg",
+        "roughness": 0.85,
+        "metalness": 0.0,
+        "pricePerUnit": 3.80,
+        "sustainabilityScore": 7,
+        "careInstructions": "Machine wash cold, tumble dry low",
+        "suitableFor": [
+            "pants",
+            "jackets",
+            "shorts"
+        ]
+    },
+    {
+        "id": "cotton-pique",
+        "name": "Cotton Piqué",
+        "type": "cotton",
+        "weight": 200,
+        "weightUnit": "GSM",
+        "stretch": "8%",
+        "durability": "high",
+        "textureFile": "/textures/pique.jpg",
+        "normalMapFile": "/textures/pique-normal.jpg",
+        "roughness": 0.8,
+        "metalness": 0.0,
+        "pricePerUnit": 3.20,
+        "sustainabilityScore": 8,
+        "careInstructions": "Machine wash cold, tumble dry low",
+        "suitableFor": [
+            "polo-shirts",
+            "tshirts"
+        ]
+    },
+    {
+        "id": "nylon-ripstop",
+        "name": "Nylon Ripstop",
+        "type": "synthetic",
+        "weight": 140,
+        "weightUnit": "GSM",
+        "stretch": "5%",
+        "durability": "very high",
+        "textureFile": "/textures/ripstop.jpg",
+        "roughness": 0.5,
+        "metalness": 0.3,
+        "pricePerUnit": 4.20,
+        "sustainabilityScore": 4,
+        "careInstructions": "Machine wash cold, air dry",
+        "suitableFor": [
+            "windbreakers",
+            "jackets",
+            "activewear"
+        ]
+    },
+    {
+        "id": "wool-blend",
+        "name": "Wool Blend",
+        "type": "wool",
+        "weight": 300,
+        "weightUnit": "GSM",
+        "stretch": "3%",
+        "durability": "high",
+        "textureFile": "/textures/wool.jpg",
+        "normalMapFile": "/textures/wool-normal.jpg",
+        "roughness": 0.9,
+        "metalness": 0.0,
+        "pricePerUnit": 6.50,
+        "sustainabilityScore": 8,
+        "careInstructions": "Dry clean only",
+        "suitableFor": [
+            "jackets",
+            "coats",
+            "sweaters"
+        ]
+    },
+    {
+        "id": "spandex-blend",
+        "name": "Spandex Blend",
+        "type": "synthetic",
+        "weight": 190,
+        "weightUnit": "GSM",
+        "stretch": "25%",
+        "durability": "medium",
+        "textureFile": "/textures/spandex.jpg",
+        "roughness": 0.4,
+        "metalness": 0.1,
+        "pricePerUnit": 3.00,
+        "sustainabilityScore": 5,
+        "careInstructions": "Machine wash cold, hang dry",
+        "suitableFor": [
+            "activewear",
+            "leggings",
+            "crop-tops"
+        ]
+    },
+    {
+        "id": "linen",
+        "name": "100% Linen",
+        "type": "linen",
+        "weight": 180,
+        "weightUnit": "GSM",
+        "stretch": "2%",
+        "durability": "high",
+        "textureFile": "/textures/linen.jpg",
+        "normalMapFile": "/textures/linen-normal.jpg",
+        "roughness": 0.95,
+        "metalness": 0.0,
+        "pricePerUnit": 5.50,
+        "sustainabilityScore": 9,
+        "careInstructions": "Machine wash cold, line dry",
+        "suitableFor": [
+            "tshirts",
+            "shirts",
+            "pants",
+            "dresses"
+        ]
+    },
+    {
+        "id": "velvet",
+        "name": "Cotton Velvet",
+        "type": "cotton",
+        "weight": 320,
+        "weightUnit": "GSM",
+        "stretch": "5%",
+        "durability": "medium",
+        "textureFile": "/textures/velvet.jpg",
+        "normalMapFile": "/textures/velvet-normal.jpg",
+        "roughness": 0.3,
+        "metalness": 0.0,
+        "pricePerUnit": 7.00,
+        "sustainabilityScore": 6,
+        "careInstructions": "Dry clean only",
+        "suitableFor": [
+            "jackets",
+            "dresses",
+            "hoodies"
+        ]
+    }
+]
