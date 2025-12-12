@@ -45,7 +45,7 @@ export const WaveformVisualizer: React.FC<WaveformVisualizerProps> = ({
 
             analyser.getByteFrequencyData(dataArray);
 
-            ctx.fillStyle = 'rgb(15, 23, 42)';
+            ctx.fillStyle = 'rgb(249, 250, 251)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             const barWidth = (canvas.width / bufferLength) * 2.5;
@@ -76,16 +76,18 @@ export const WaveformVisualizer: React.FC<WaveformVisualizerProps> = ({
     }, [isRecording, audioStream]);
 
     return (
-        <div className="waveform-visualizer">
+        <div className="my-6 relative">
             <canvas
                 ref={canvasRef}
                 width={600}
                 height={150}
-                className="waveform-canvas"
+                className="w-full h-auto rounded-lg border-2 border-gray-200 bg-gray-50 shadow-inner"
             />
             {!isRecording && (
-                <div className="visualizer-placeholder">
-                    <p>Audio waveform will appear here when recording</p>
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg border-2 border-gray-200">
+                    <p className="text-gray-500 text-center px-4">
+                        🎵 Audio waveform will appear here when recording
+                    </p>
                 </div>
             )}
         </div>

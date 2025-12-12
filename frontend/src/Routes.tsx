@@ -8,6 +8,8 @@ import LandingPage from './pages/landing-page';
 import MultiInputSelection from './pages/multi-input-selection';
 import ThreeDCustomizerFlow from './pages/3d-customizer-flow';
 import VoiceInputFlow from './pages/voice-input-flow';
+import Account from './pages/Account';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const Routes: React.FC = () => {
     return (
@@ -19,9 +21,26 @@ const Routes: React.FC = () => {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/authentication" element={<Authentication />} />
                     <Route path="/landing-page" element={<LandingPage />} />
-                    <Route path="/multi-input-selection" element={<MultiInputSelection />} />
-                    <Route path="/3d-customizer-flow" element={<ThreeDCustomizerFlow />} />
-                    <Route path="/voice-input-flow" element={<VoiceInputFlow />} />
+                    <Route path="/multi-input-selection" element={
+                        <ProtectedRoute>
+                            <MultiInputSelection />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/3d-customizer-flow" element={
+                        <ProtectedRoute>
+                            <ThreeDCustomizerFlow />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/voice-input-flow" element={
+                        <ProtectedRoute>
+                            <VoiceInputFlow />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/account" element={
+                        <ProtectedRoute>
+                            <Account />
+                        </ProtectedRoute>
+                    } />
                     <Route path="*" element={<NotFound />} />
                 </RouterRoutes>
             </ErrorBoundary>

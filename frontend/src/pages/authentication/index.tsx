@@ -8,6 +8,8 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import WalletProviders from './components/WalletProviders';
 import { AuthFormData, AuthFormErrors, WalletProvider, ValidationRule } from './types';
+import authService from '../../services/authService';
+import { authActions } from '../../store/authStore';
 
 const Authentication = () => {
     const navigate = useNavigate();
@@ -40,11 +42,6 @@ const Authentication = () => {
             description: 'Connect with WalletConnect'
         }
     ];
-
-    const mockCredentials = {
-        email: 'creator@virtualtwin.ai',
-        password: 'Fashion2024!'
-    };
 
     const validateEmail = (email: string): string | undefined => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,23 +114,38 @@ const Authentication = () => {
         setIsLoading(true);
         setErrors({});
 
-        setTimeout(() => {
-            if (
-                formData.email === mockCredentials.email &&
-                formData.password === mockCredentials.password
-            ) {
+        try {
+            const response = await authService.login({
+                email: formData.email,
+                password: formData.password,
+            });
+
+            if (response.success && response.data) {
+                // Update auth store
+                authActions.setUser(response.data.user);
+
+                // Store token with remember me preference
+                authService.setToken(response.data.token, formData.rememberMe || false);
+                authService.setUser(response.data.user, formData.rememberMe || false);
+
                 success('Login Successful', 'Welcome back to VirtualTwin!');
                 setTimeout(() => {
                     navigate('/multi-input-selection');
                 }, 1500);
             } else {
                 setErrors({
-                    general: `Invalid credentials. Use email: ${mockCredentials.email} and password: ${mockCredentials.password}`
+                    general: response.error || 'Login failed. Please try again.'
                 });
-                error('Login Failed', 'Please check your credentials and try again');
+                error('Login Failed', response.error || 'Please check your credentials and try again');
             }
+        } catch (err) {
+            setErrors({
+                general: 'Network error. Please check your connection.'
+            });
+            error('Login Failed', 'Network error. Please try again.');
+        } finally {
             setIsLoading(false);
-        }, 1500);
+        }
     };
 
     const handleRegister = async (e: FormEvent) => {
@@ -144,13 +156,40 @@ const Authentication = () => {
         setIsLoading(true);
         setErrors({});
 
-        setTimeout(() => {
-            success('Account Created', 'Welcome to VirtualTwin! Redirecting to onboarding...');
-            setTimeout(() => {
-                navigate('/multi-input-selection');
-            }, 1500);
+        try {
+            const response = await authService.register({
+                email: formData.email,
+                password: formData.password,
+                displayName: formData.displayName || '',
+                role: formData.role || '',
+            });
+
+            if (response.success && response.data) {
+                // Update auth store
+                authActions.setUser(response.data.user);
+
+                // Store token
+                authService.setToken(response.data.token, formData.rememberMe || false);
+                authService.setUser(response.data.user, formData.rememberMe || false);
+
+                success('Account Created', 'Welcome to VirtualTwin! Redirecting to onboarding...');
+                setTimeout(() => {
+                    navigate('/multi-input-selection');
+                }, 1500);
+            } else {
+                setErrors({
+                    general: response.error || 'Registration failed. Please try again.'
+                });
+                error('Registration Failed', response.error || 'Please check your information and try again');
+            }
+        } catch (err) {
+            setErrors({
+                general: 'Network error. Please check your connection.'
+            });
+            error('Registration Failed', 'Network error. Please try again.');
+        } finally {
             setIsLoading(false);
-        }, 2000);
+        }
     };
 
     const handleWalletConnect = async (providerId: string) => {

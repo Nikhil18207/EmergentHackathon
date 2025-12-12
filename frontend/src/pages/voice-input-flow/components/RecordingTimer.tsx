@@ -47,15 +47,16 @@ export const RecordingTimer: React.FC<RecordingTimerProps> = ({
     }
 
     return (
-        <div className="recording-timer">
-            <div className="timer-display">
-                {isRecording && <span className="recording-dot">●</span>}
-                <span className="time-text">{formatTime(elapsedTime)}</span>
-                <span className="max-time-text">/ {formatTime(maxDuration)}</span>
+        <div className="my-6">
+            <div className="flex items-center justify-center gap-3 mb-2">
+                {isRecording && <span className="text-red-500 text-2xl animate-pulse">●</span>}
+                <span className="text-3xl font-mono font-bold text-gray-800">{formatTime(elapsedTime)}</span>
+                <span className="text-lg text-gray-500">/ {formatTime(maxDuration)}</span>
             </div>
-            <div className="timer-progress-bar">
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                 <div
-                    className="timer-progress-fill"
+                    className={`h-full rounded-full transition-all duration-300 ${getProgressPercentage() > 80 ? 'bg-red-500' : 'bg-blue-600'
+                        }`}
                     style={{ width: `${getProgressPercentage()}%` }}
                 />
             </div>

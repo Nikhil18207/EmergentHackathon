@@ -138,60 +138,62 @@ export const VoiceInputFlow: React.FC = () => {
     };
 
     return (
-        <div className="voice-input-flow">
-            <div className="voice-input-header">
-                <h1>Voice Input</h1>
-                <p>Speak your design ideas and we'll transcribe them for you</p>
-            </div>
-
-            {recordingState.hasPermission === null || recordingState.hasPermission === false ? (
-                <PermissionPrompt
-                    onRequestPermission={requestMicrophonePermission}
-                    onSkip={handleSkipPermission}
-                    hasPermission={recordingState.hasPermission}
-                    isRequesting={isRequestingPermission}
-                />
-            ) : (
-                <div className="voice-input-content">
-                    <div className="recording-section">
-                        <MicrophoneButton
-                            isRecording={recordingState.isRecording}
-                            isProcessing={recordingState.isProcessing}
-                            onToggleRecording={toggleRecording}
-                        />
-
-                        <RecordingTimer
-                            isRecording={recordingState.isRecording}
-                            maxDuration={300}
-                            onMaxDurationReached={handleMaxDurationReached}
-                        />
-
-                        <WaveformVisualizer
-                            isRecording={recordingState.isRecording}
-                            audioStream={recordingState.audioStream}
-                        />
-
-                        <RecordingControls
-                            isRecording={recordingState.isRecording}
-                            isPaused={recordingState.isPaused}
-                            onToggleRecording={toggleRecording}
-                            onPauseResume={handlePauseResume}
-                            onCancel={handleCancel}
-                            onSave={handleSave}
-                            disabled={recordingState.isProcessing}
-                        />
-                    </div>
-
-                    <div className="transcription-section">
-                        <TranscriptionEditor
-                            transcription={transcription}
-                            onTranscriptionChange={setTranscription}
-                            isEditable={true}
-                            isProcessing={recordingState.isProcessing}
-                        />
-                    </div>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+            <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-2">Voice Input</h1>
+                    <p className="text-lg text-gray-600">Speak your design ideas and we'll transcribe them for you</p>
                 </div>
-            )}
+
+                {recordingState.hasPermission === null || recordingState.hasPermission === false ? (
+                    <PermissionPrompt
+                        onRequestPermission={requestMicrophonePermission}
+                        onSkip={handleSkipPermission}
+                        hasPermission={recordingState.hasPermission}
+                        isRequesting={isRequestingPermission}
+                    />
+                ) : (
+                    <div className="space-y-6">
+                        <div className="bg-white rounded-lg shadow-lg p-8">
+                            <MicrophoneButton
+                                isRecording={recordingState.isRecording}
+                                isProcessing={recordingState.isProcessing}
+                                onToggleRecording={toggleRecording}
+                            />
+
+                            <RecordingTimer
+                                isRecording={recordingState.isRecording}
+                                maxDuration={300}
+                                onMaxDurationReached={handleMaxDurationReached}
+                            />
+
+                            <WaveformVisualizer
+                                isRecording={recordingState.isRecording}
+                                audioStream={recordingState.audioStream}
+                            />
+
+                            <RecordingControls
+                                isRecording={recordingState.isRecording}
+                                isPaused={recordingState.isPaused}
+                                onToggleRecording={toggleRecording}
+                                onPauseResume={handlePauseResume}
+                                onCancel={handleCancel}
+                                onSave={handleSave}
+                                disabled={recordingState.isProcessing}
+                            />
+                        </div>
+
+                        <div className="bg-white rounded-lg shadow-lg p-6">
+                            <TranscriptionEditor
+                                transcription={transcription}
+                                onTranscriptionChange={setTranscription}
+                                isEditable={true}
+                                isProcessing={recordingState.isProcessing}
+                            />
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
