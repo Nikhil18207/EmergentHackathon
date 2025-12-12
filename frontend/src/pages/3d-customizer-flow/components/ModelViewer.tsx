@@ -74,7 +74,7 @@ const ModelViewer = ({
     }, [zoom, onZoom]);
 
     return (
-        <div className={`relative h-full bg-muted/20 rounded-lg overflow-hidden ${className}`}>
+        <div className={`relative bg-muted/20 rounded-lg overflow-hidden ${className}`}>
             <CanvasModel enableOrbitControls={true} />
 
             {/* Controls overlay */}

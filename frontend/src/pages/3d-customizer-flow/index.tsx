@@ -388,7 +388,7 @@ const ThreeDCustomizerFlow = () => {
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div className="space-y-4">
-                                <div className="glass-strong p-4 rounded-lg border border-border">
+                                <div className="glass-strong p-4 rounded-lg border border-border min-h-[1150px]">
                                     <div className="flex items-center justify-between mb-4">
                                         <h2 className="font-heading font-semibold text-xl text-foreground">
                                             3D Preview

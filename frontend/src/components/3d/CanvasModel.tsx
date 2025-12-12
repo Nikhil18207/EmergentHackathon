@@ -12,7 +12,7 @@ const CanvasModel = ({ enableOrbitControls = false }: CanvasModelProps) => {
     return (
         <Canvas
             shadows
-            camera={{ position: [0, 0, 0], fov: 25 }}
+            camera={{ position: [0, 0, 10], fov: 50 }}
             gl={{ preserveDrawingBuffer: true }}
             className="w-full max-w-full h-full transition-all ease-in"
             style={{ touchAction: 'none' }}
@@ -25,8 +25,8 @@ const CanvasModel = ({ enableOrbitControls = false }: CanvasModelProps) => {
                     <OrbitControls
                         enableZoom={true}
                         enablePan={true}
-                        minDistance={2}
-                        maxDistance={10}
+                        minDistance={5}
+                        maxDistance={20}
                         maxPolarAngle={Math.PI / 2}
                         enableDamping
                         dampingFactor={0.05}

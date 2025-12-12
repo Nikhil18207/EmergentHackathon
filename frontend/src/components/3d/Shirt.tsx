@@ -6,14 +6,20 @@ import state from '../../store';
 
 const Shirt = () => {
     const snap = useSnapshot(state);
-    const { nodes, materials } = useGLTF('/models/shirt_baked.glb') as any;
+    const { nodes, materials } = useGLTF(snap.modelPath) as any;
 
     const logoTexture = snap.isLogoTexture ? useTexture(snap.logoDecal) : null;
     const fullTexture = snap.isFullTexture ? useTexture(snap.fullDecal) : null;
 
+    // Find the first available mesh node (works for different models)
+    const meshNode = nodes.T_Shirt_male || Object.values(nodes).find((node: any) => node?.geometry);
+
+    // Find the first available material
+    const material = materials.lambert1 || Object.values(materials)[0];
+
     useFrame((_, delta) => {
-        if (materials.lambert1) {
-            easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
+        if (material && material.color) {
+            easing.dampC(material.color, snap.color, 0.25, delta);
         }
     });
 
@@ -23,8 +29,8 @@ const Shirt = () => {
         <group key={stateString}>
             <mesh
                 castShadow
-                geometry={nodes.T_Shirt_male?.geometry}
-                material={materials.lambert1}
+                geometry={meshNode?.geometry}
+                material={material}
                 material-roughness={1}
                 dispose={null}
             >
