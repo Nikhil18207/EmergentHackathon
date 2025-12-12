@@ -423,7 +423,7 @@ const ThreeDCustomizerFlow = () => {
                                         selectedFeatures={customizationState.selectedFeatures}
                                         onRotate={() => { }}
                                         onZoom={() => { }}
-                                        className="h-[1050px]" />
+                                        className="h-[1085px]" />
 
                                 </div>
 
