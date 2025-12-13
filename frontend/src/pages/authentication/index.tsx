@@ -128,21 +128,56 @@ const Authentication = () => {
                 authService.setToken(response.data.token, formData.rememberMe || false);
                 authService.setUser(response.data.user, formData.rememberMe || false);
 
-                success('Login Successful', 'Welcome back to VirtualTwin!');
+                success('Login Successful', 'Welcome back to TrendPilot!');
                 setTimeout(() => {
                     navigate('/multi-input-selection');
                 }, 1500);
             } else {
-                setErrors({
-                    general: response.error || 'Login failed. Please try again.'
-                });
-                error('Login Failed', response.error || 'Please check your credentials and try again');
+                const errorMessage = response.error || 'Login failed. Please try again.';
+
+                // Check if error indicates user doesn't exist
+                if (errorMessage.toLowerCase().includes('user not found') ||
+                    errorMessage.toLowerCase().includes('no user') ||
+                    errorMessage.toLowerCase().includes('does not exist')) {
+                    setErrors({
+                        general: `No account found with email ${formData.email}. Please create an account first.`
+                    });
+                    error(
+                        'Account Not Found',
+                        'No account exists with this email. Please sign up to create a new account.',
+                        () => {
+                            // Auto-switch to register tab after 3 seconds
+                            setTimeout(() => {
+                                setActiveTab('register');
+                                setFormData(prev => ({
+                                    ...prev,
+                                    password: '',
+                                    confirmPassword: '',
+                                    displayName: '',
+                                    role: ''
+                                }));
+                                setErrors({});
+                            }, 3000);
+                        }
+                    );
+                } else if (errorMessage.toLowerCase().includes('password') ||
+                    errorMessage.toLowerCase().includes('invalid credentials')) {
+                    setErrors({
+                        general: 'Incorrect password. Please try again or reset your password.'
+                    });
+                    error('Invalid Credentials', 'The password you entered is incorrect. Please try again.');
+                } else {
+                    setErrors({
+                        general: errorMessage
+                    });
+                    error('Login Failed', errorMessage);
+                }
             }
         } catch (err) {
             setErrors({
-                general: 'Network error. Please check your connection.'
+                general: 'Network error. Please check your connection and ensure the backend server is running.'
             });
-            error('Login Failed', 'Network error. Please try again.');
+            error('Connection Error', 'Unable to connect to the server. Please check your internet connection.');
         } finally {
             setIsLoading(false);
         }
@@ -172,21 +207,51 @@ const Authentication = () => {
                 authService.setToken(response.data.token, formData.rememberMe || false);
                 authService.setUser(response.data.user, formData.rememberMe || false);
 
-                success('Account Created', 'Welcome to VirtualTwin! Redirecting to onboarding...');
+                success('Account Created', 'Welcome to TrendPilot! Redirecting to your dashboard...');
                 setTimeout(() => {
                     navigate('/multi-input-selection');
                 }, 1500);
             } else {
-                setErrors({
-                    general: response.error || 'Registration failed. Please try again.'
-                });
-                error('Registration Failed', response.error || 'Please check your information and try again');
+                const errorMessage = response.error || 'Registration failed. Please try again.';
+
+                // Check if error indicates duplicate email
+                if (errorMessage.toLowerCase().includes('already exists') ||
+                    errorMessage.toLowerCase().includes('already registered') ||
+                    errorMessage.toLowerCase().includes('email already in use')) {
+                    setErrors({
+                        general: `An account with ${formData.email} already exists. Please login instead.`
+                    });
+                    error(
+                        'Account Already Exists',
+                        'This email is already registered. Please login to your existing account.',
+                        () => {
+                            // Auto-switch to login tab after 3 seconds
+                            setTimeout(() => {
+                                setActiveTab('login');
+                                setFormData(prev => ({
+                                    email: prev.email,
+                                    password: '',
+                                    confirmPassword: '',
+                                    displayName: '',
+                                    role: '',
+                                    rememberMe: false
+                                }));
+                                setErrors({});
+                            }, 3000);
+                        }
+                    );
+                } else {
+                    setErrors({
+                        general: errorMessage
+                    });
+                    error('Registration Failed', errorMessage);
+                }
             }
         } catch (err) {
             setErrors({
-                general: 'Network error. Please check your connection.'
+                general: 'Network error. Please check your connection and ensure the backend server is running.'
             });
-            error('Registration Failed', 'Network error. Please try again.');
+            error('Connection Error', 'Unable to connect to the server. Please check your internet connection.');
         } finally {
             setIsLoading(false);
         }
@@ -254,11 +319,11 @@ const Authentication = () => {
                                 </svg>
                             </div>
                             <h1 className="font-heading font-bold text-2xl text-foreground">
-                                VirtualTwin
+                                TrendPilot
                             </h1>
                         </div>
                         <p className="text-muted-foreground font-caption">
-                            Transform fashion trends into reality in 3 minutes
+                            Transform fashion ideas into reality in 30 minutes
                         </p>
                     </div>
 

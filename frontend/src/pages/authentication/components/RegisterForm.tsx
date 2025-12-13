@@ -37,7 +37,7 @@ const RegisterForm = ({ formData, errors, isLoading, setFormData, onSubmit }: Re
             <Input
                 type="email"
                 label="Email Address"
-                placeholder="creator@virtualtwin.ai"
+                placeholder="creator@trendpilot.ai"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 error={errors.email}

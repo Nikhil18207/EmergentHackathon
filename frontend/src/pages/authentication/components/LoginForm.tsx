@@ -19,7 +19,7 @@ const LoginForm = ({ formData, errors, isLoading, setFormData, onSubmit }: Login
             <Input
                 type="email"
                 label="Email Address"
-                placeholder="creator@virtualtwin.ai"
+                placeholder="creator@trendpilot.ai"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 error={errors.email}
@@ -68,7 +68,7 @@ const LoginForm = ({ formData, errors, isLoading, setFormData, onSubmit }: Login
                 iconPosition="right"
                 className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
             >
-                Login to VirtualTwin
+                Login to TrendPilot
             </Button>
         </form>
     );
