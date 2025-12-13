@@ -78,7 +78,7 @@ const Footer = () => {
                                 </svg>
                             </div>
                             <span className="font-heading font-bold text-xl text-foreground">
-                                VirtualTwin
+                                TrendPilot
                             </span>
                         </div>
                         <p className="font-body text-muted-foreground mb-6 max-w-xs">
@@ -168,7 +168,7 @@ const Footer = () => {
                 <div className="pt-8 border-t border-border">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="font-caption text-sm text-muted-foreground">
-                            &copy; {currentYear} VirtualTwin. All rights reserved.
+                            &copy; {currentYear} TrendPilot. All rights reserved.
                         </p>
                         <div className="flex items-center gap-6 text-sm font-caption text-muted-foreground">
                             <span>Built with AI & Web3</span>

@@ -54,7 +54,7 @@ const Header = ({ className = '' }: HeaderProps) => {
                         <Link
                             to="/landing-page"
                             className="flex items-center gap-3 group animate-spring-fast hover:opacity-80"
-                            aria-label="VirtualTwin Home"
+                            aria-label="TrendPilot Home"
                         >
                             <div className="relative">
                                 <svg
@@ -90,7 +90,7 @@ const Header = ({ className = '' }: HeaderProps) => {
                                 </svg>
                             </div>
                             <span className="font-heading font-bold text-xl text-foreground tracking-tight">
-                                VirtualTwin
+                                TrendPilot
                             </span>
                         </Link>
 

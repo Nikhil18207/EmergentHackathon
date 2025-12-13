@@ -10,7 +10,7 @@ const TestimonialsSection = () => {
             role: 'Fashion Influencer • 125K followers',
             avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_172229d5c-1763294124207.png",
             alt: 'Professional headshot of Sarah Chen, Asian woman with long black hair wearing white blazer against neutral background',
-            content: 'VirtualTwin transformed my Instagram aesthetic into a real clothing line in minutes. The AI understood my Y2K vision perfectly and matched me with the ideal manufacturer.',
+            content: 'TrendPilot transformed my Instagram aesthetic into a real clothing line in minutes. The AI understood my Y2K vision perfectly and matched me with the ideal manufacturer.',
             rating: 5
         },
         {
@@ -28,7 +28,7 @@ const TestimonialsSection = () => {
             role: 'Fashion Student • Emerging Designer',
             avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_1b0679b35-1763297418520.png",
             alt: 'Professional headshot of Aisha Patel, South Asian woman with shoulder-length brown hair wearing burgundy blouse',
-            content: 'As a student, I never thought I could test my designs in the real market. VirtualTwin made it possible with zero upfront costs. The supplier matching saved me weeks of research.',
+            content: 'As a student, I never thought I could test my designs in the real market. TrendPilot made it possible with zero upfront costs. The supplier matching saved me weeks of research.',
             rating: 5
         }];
 
@@ -51,7 +51,7 @@ const TestimonialsSection = () => {
                         </span>
                     </h2>
                     <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Join thousands of designers who have launched successful fashion lines with VirtualTwin.
+                        Join thousands of designers who have launched successful fashion lines with TrendPilot.
                     </p>
                 </div>
 

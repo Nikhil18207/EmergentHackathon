@@ -143,7 +143,7 @@ const MultiInputSelection = () => {
     return (
         <>
             <Helmet>
-                <title>Choose Your Input Method - VirtualTwin</title>
+                <title>Choose Your Input Method - TrendPilot</title>
                 <meta
                     name="description"
                     content="Select your preferred design creation method from voice, text, mood board, questionnaire, template, or 3D customizer. Transform fashion ideas into manufacturable designs in under 3 minutes."
@@ -201,10 +201,10 @@ const MultiInputSelection = () => {
                                 <p className="text-sm font-caption text-muted-foreground">
                                     Need help? Contact our support team at{' '}
                                     <a
-                                        href="mailto:support@virtualtwin.ai"
-                                        className="text-primary hover:text-primary/80 animate-spring"
+                                        href="mailto:support@trendpilot.ai"
+                                        className="text-primary hover:text-primary/80 animate-spring-fast"
                                     >
-                                        support@virtualtwin.ai
+                                        support@trendpilot.ai
                                     </a>
                                 </p>
                             </div>
