@@ -1,7 +1,7 @@
 {
-    "name": "fashion-backend",
+    "name": "trendpilot-backend",
     "version": "1.0.0",
-    "description": "Backend API for Fashion application",
+    "description": "Backend API for TrendPilot - Demand-first fashion creation platform",
     "main": "src/index.js",
     "type": "module",
     "scripts": {
@@ -12,10 +12,15 @@
     "keywords": [
         "fashion",
         "api",
-        "backend"
+        "backend",
+        "trendpilot",
+        "emergent",
+        "ai",
+        "3d-visualization",
+        "creator-economy"
     ],
-    "author": "",
-    "license": "ISC",
+    "author": "Nikhil S <nikhil18207@github>",
+    "license": "MIT",
     "dependencies": {
         "bcryptjs": "^3.0.3",
         "cors": "^2.8.5",
